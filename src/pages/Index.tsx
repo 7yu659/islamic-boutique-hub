@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Header } from "@/components/Header";
+import { Header } from "@/components/UpdatedHeader";
 import { Hero } from "@/components/Hero";
 import { Categories } from "@/components/Categories";
 import { FeaturedProducts } from "@/components/FeaturedProducts";
@@ -10,7 +10,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header cartItemsCount={cartItemsCount} />
+      <Header />
       <Hero />
       <Categories />
       <FeaturedProducts />

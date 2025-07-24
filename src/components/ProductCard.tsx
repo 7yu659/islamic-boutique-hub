@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -27,53 +28,58 @@ export const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
 
   return (
     <Card className="group relative overflow-hidden hover:shadow-lg transition-all duration-300 bg-card border-border">
-      <div className="relative">
-        <img 
-          src={product.image} 
-          alt={product.name}
-          className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-        />
-        {product.isHalal && (
-          <Badge className="absolute top-2 left-2 bg-islamic-green text-white">
-            হালাল
-          </Badge>
-        )}
-        {discount > 0 && (
-          <Badge className="absolute top-2 right-2 bg-destructive text-destructive-foreground">
-            -{discount}%
-          </Badge>
-        )}
-        <Button
-          size="icon"
-          variant="ghost"
-          className="absolute top-2 right-2 bg-white/80 hover:bg-white"
-        >
-          <Heart className="w-4 h-4" />
-        </Button>
-      </div>
+      <Link to={`/product/${product.id}`}>
+        <div className="relative">
+          <img 
+            src={product.image} 
+            alt={product.name}
+            className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+          {product.isHalal && (
+            <Badge className="absolute top-2 left-2 bg-islamic-green text-white">
+              হালাল
+            </Badge>
+          )}
+          {discount > 0 && (
+            <Badge className="absolute top-2 right-2 bg-destructive text-destructive-foreground">
+              -{discount}%
+            </Badge>
+          )}
+        </div>
+      </Link>
+      
+      <Button
+        size="icon"
+        variant="ghost"
+        className="absolute top-2 right-2 bg-white/80 hover:bg-white z-10"
+      >
+        <Heart className="w-4 h-4" />
+      </Button>
       
       <CardContent className="p-4">
-        <div className="space-y-2">
-          <h3 className="font-semibold text-foreground group-hover:text-islamic-green transition-colors">
-            {product.name}
-          </h3>
-          {product.nameArabic && (
-            <p className="text-sm text-muted-foreground font-arabic">
-              {product.nameArabic}
-            </p>
-          )}
-          <div className="flex items-center gap-2">
-            <span className="text-lg font-bold text-islamic-green">
-              ৳{product.price}
-            </span>
-            {product.originalPrice && (
-              <span className="text-sm text-muted-foreground line-through">
-                ৳{product.originalPrice}
-              </span>
+        <Link to={`/product/${product.id}`}>
+          <div className="space-y-2">
+            <h3 className="font-semibold text-foreground group-hover:text-islamic-green transition-colors">
+              {product.name}
+            </h3>
+            {product.nameArabic && (
+              <p className="text-sm text-muted-foreground font-arabic">
+                {product.nameArabic}
+              </p>
             )}
+            <div className="flex items-center gap-2">
+              <span className="text-lg font-bold text-islamic-green">
+                ৳{product.price}
+              </span>
+              {product.originalPrice && (
+                <span className="text-sm text-muted-foreground line-through">
+                  ৳{product.originalPrice}
+                </span>
+              )}
+            </div>
+            <p className="text-xs text-muted-foreground">{product.category}</p>
           </div>
-          <p className="text-xs text-muted-foreground">{product.category}</p>
-        </div>
+        </Link>
       </CardContent>
       
       <CardFooter className="p-4 pt-0">
